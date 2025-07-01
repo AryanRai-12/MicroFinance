@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Wallet</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/wallet.css}">
+</head>
+<body>
+
+<div class="wallet-container wallet-view">
+    <div class="wallet-card">
+        <h2>💳 My Wallet</h2>
+
+        <p class="balance-label">Current Balance:</p>
+        <p class="balance" th:text="'₹' + ${wallet.balance}">₹0.00</p>
+
+        <div class="button-grid">
+            <a th:href="@{/wallet/add}" class="btn blue">Add Money</a>
+            <a th:href="@{/wallet/withdraw}" class="btn orange">Withdraw</a>
+            <a th:href="@{/wallet/transfer}" class="btn teal">Transfer</a>
+            <a th:href="@{/wallet/transactions}" class="btn dark">Transactions</a>
+            <a th:href="@{/dashboard}" class="btn gray">Back to Dashboard</a>
+			<a th:href="@{/logout}" class="btn purple">Logout</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

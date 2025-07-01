@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, <span th:text="${user.username}">User</span></h1>
+
+        <div class="card">
+            <h2>Profile</h2>
+            <p><strong>Email:</strong> <span th:text="${user.email}">user@example.com</span></p>
+            <p><strong>Wallet Balance:</strong> ₹<span th:text="${wallet.balance}">0.00</span></p>
+            <form th:action="@{/wallet/view}" method="get">
+                <button type="submit">Go to Wallet</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Your Loans</h2>
+            <ul th:if="${loans != null}">
+                <li th:each="loan : ${loans}">
+                    ₹<span th:text="${loan.amount}"></span> - 
+                    <span class="status" th:text="${loan.status}"></span>
+                </li>
+            </ul>
+            <p th:if="${#lists.isEmpty(loans)}" class="empty">No loans found.</p>
+        </div>
+
+        <div class="card">
+            <h2>Recent Transactions</h2>
+            <ul th:if="${transactions != null}">
+                <li th:each="txn : ${transactions}">
+                    <strong th:text="${txn.type}">ADD</strong>: ₹<span th:text="${txn.amount}">0.00</span> 
+                    (<span th:text="${txn.status}" 
+                           th:classappend="${txn.status == 'SUCCESS'} ? 'success' : 'failed'">Status</span>)
+                </li>
+            </ul>
+            <p th:if="${#lists.isEmpty(transactions)}" class="empty">No transactions available.</p>
+        </div>
+    </div>
+</body>
+</html>

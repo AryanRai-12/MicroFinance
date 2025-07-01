@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome Admin!</h1>
+    <p>Manage loans and view transactions here.</p>
+
+    <a th:href="@{/admin/loans}">View All Loan Requests</a> <br>
+    <a th:href="@{/admin/transactions}">View All Transactions</a>
+</body>
+</html>

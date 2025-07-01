@@ -1,0 +1,170 @@
+/* Base Reset */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Shared Container Layout */
+.wallet-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Wallet View */
+.wallet-view h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.wallet-balance {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Button Grid */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn.blue   { background-color: #007bff; }
+.btn.orange { background-color: #fd7e14; }
+.btn.teal   { background-color: #17a2b8; }
+.btn.dark   { background-color: #343a40; }
+.btn.gray   { background-color: #6c757d; }
+.btn.purple   { background-color: #8b5cab; }
+
+/* Forms (Add, Withdraw, Transfer) */
+.wallet-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.wallet-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.wallet-form label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"] {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.wallet-form button,
+button {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.wallet-form button:hover,
+button:hover {
+    background-color: #0056b3;
+}
+
+.wallet-form a {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.wallet-form a:hover {
+    text-decoration: underline;
+}
+
+.btn,
+.btn:visited,
+.btn:hover,
+.btn:active {
+    color: white !important;
+    text-decoration: none;
+}
+
+
+/* Transaction Table */
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+.transaction-table th,
+.transaction-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.transaction-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.transaction-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.transaction-table .text-success {
+    color: green;
+}
+
+.transaction-table .text-danger {
+    color: red;
+}
+
+/* Utility Margin */
+.mt-3 {
+    margin-top: 20px;
+}
+
