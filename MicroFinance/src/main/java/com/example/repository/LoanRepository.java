@@ -11,5 +11,6 @@ import com.example.model.Loan;
 public interface LoanRepository extends CrudRepository<Loan, Long> {
 	List<Loan> findByUserId(Long userId);
 	List<Loan> findByStatus(String status);
+	
 
 }

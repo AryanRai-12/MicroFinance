@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pending Loans</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/wallet.css}">
+</head>
+<body>
+<div class="wallet-container">
+    <h2>📌 Pending Loan Approvals</h2>
+
+	<form th:action="@{/processLoans}" method="post">
+	    <table class="transaction-table">
+	        <thead>
+	            <tr>
+	                <th>Select</th>
+	                <th>Loan ID</th>
+	                <th>User ID</th>
+	                <th>Amount</th>
+	                <th>Status</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="loan : ${pendingLoans}">
+	                <td><input type="checkbox" name="loanIds" th:value="${loan.id}"/></td>
+	                <td th:text="${loan.id}">1</td>
+	                <td th:text="${loan.user.id}">User</td>
+	                <td th:text="${loan.amount}">₹1000</td>
+	                <td th:text="${loan.status}">PENDING</td>
+	            </tr>
+	        </tbody>
+	    </table>
+
+	    <div style="margin-top: 20px; display: flex; gap: 10px;">
+	        <button type="submit" name="action" value="approve" class="btn blue">✅ Approve Selected</button>
+	        <button type="submit" name="action" value="reject" class="btn dark">❌ Reject Selected</button>
+	    </div>
+	</form>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/admin/dashboard}" class="btn gray">← Back to Admin Dashboard</a>
+    </div>
+</div>
+</body>
+</html>

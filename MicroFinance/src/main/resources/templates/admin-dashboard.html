@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/wallet.css}">
 </head>
 <body>
-    <h1>Welcome Admin!</h1>
-    <p>Manage loans and view transactions here.</p>
 
-    <a th:href="@{/admin/loans}">View All Loan Requests</a> <br>
-    <a th:href="@{/admin/transactions}">View All Transactions</a>
+<div class="wallet-container wallet-form">
+    <h2>👨‍💼 Admin Dashboard</h2>
+
+    <div class="button-grid">
+        <a th:href="@{/pendingloans}" class="btn orange">View Pending Loans</a>
+        <a th:href="@{/loans/allLoan}" class="btn teal">View All Loans</a>
+        <a th:href="@{/allTransaction}" class="btn dark">View Transactions</a>
+        <a th:href="@{/logout}" class="btn gray">Logout</a>
+    </div>
+</div>
+
 </body>
 </html>

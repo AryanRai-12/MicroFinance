@@ -8,12 +8,15 @@ body {
 
 /* Shared Container Layout */
 .wallet-container {
-    max-width: 600px;
+    max-width: 1000px; /* ⬅️ Increased from 600px */
     margin: 60px auto;
     padding: 30px;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+
+    /* REMOVE THIS LINE ⛔️ */
+    /* overflow-x: auto; */
 }
 
 /* Wallet View */
@@ -63,7 +66,7 @@ body {
 .btn.teal   { background-color: #17a2b8; }
 .btn.dark   { background-color: #343a40; }
 .btn.gray   { background-color: #6c757d; }
-.btn.purple   { background-color: #8b5cab; }
+.btn.purple { background-color: #8b5cab; }
 
 /* Forms (Add, Withdraw, Transfer) */
 .wallet-form h2 {
@@ -92,6 +95,8 @@ input[type="email"] {
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-top: 5px;
+    width: 100%; /* Ensure input takes full space */
+    box-sizing: border-box;
 }
 
 .wallet-form button,
@@ -131,12 +136,15 @@ button:hover {
     text-decoration: none;
 }
 
-
 /* Transaction Table */
 .transaction-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
+    
+    /* ADDED: Make table adapt */
+    table-layout: auto;
+    word-wrap: break-word;
 }
 
 .transaction-table th,
@@ -144,6 +152,11 @@ button:hover {
     padding: 12px 15px;
     border: 1px solid #ddd;
     text-align: center;
+
+    /* ADDED: prevent overflow */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .transaction-table th {
@@ -167,4 +180,3 @@ button:hover {
 .mt-3 {
     margin-top: 20px;
 }
-

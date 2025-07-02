@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Transactions</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/wallet.css}">
+</head>
+<body>
+<div class="wallet-container">
+    <h2>📋 All Transactions </h2>
+
+    <table class="transaction-table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Status</th>
+				<th>TimeStamp</th>
+				<th>WalletId</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="transaction : ${transactionList}">
+                <td th:text="${transaction.id}">1</td>
+                <td th:text="${transaction.amount}">₹1000</td>
+                <td th:text="${transaction.type}">ADD</td>
+                <td th:text="${transaction.status}">PENDING</td>
+				<td th:text="${#temporals.format(transaction.timestamp, 'dd MMM yyyy, hh:mm a')}">2025-06-26</td>
+				<td th:text="${transaction.wallet.id}">WalletId</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/admin/dashboard}" class="btn gray">← Back to Admin Dashboard</a>
+    </div>
+</div>
+</body>
+</html>

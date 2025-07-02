@@ -33,7 +33,7 @@ public class User {
 	 
 	@NotBlank(message = "Role is required")
 	@Column(nullable = false)
-	private String role = "USER"; 
+	private String role; 
 	 
 	@Email(message = "Invalid email")
 	@Column(unique = true)
@@ -56,7 +56,7 @@ public class User {
 		this.id = id;
 		this.password = password;
 		this.username = username;
-		this.role = "USER";
+		this.role = role;
 		this.email = email;
 		this.mobile = mobile;
 		this.wallet = wallet;
@@ -84,7 +84,7 @@ public class User {
 		return role;
 	}
 	public void setRole(String role) {
-		this.role = "USER";
+		this.role = role;
 	}
 	public String getEmail() {
 		return email;

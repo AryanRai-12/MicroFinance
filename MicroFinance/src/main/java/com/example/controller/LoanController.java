@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.model.Loan;
 import com.example.model.User;
+import com.example.repository.LoanRepository;
 import com.example.service.LoanService;
 import com.example.service.UserService;
 
@@ -28,7 +29,16 @@ public class LoanController {
 
     @Autowired
     private UserService userService;
-
+    
+    @Autowired 
+    private LoanRepository loanRepository;
+    
+    
+    @GetMapping("/allLoan")
+    public String showAllLoan(Model model) {
+        model.addAttribute("loanList", loanRepository.findAll());
+        return "loan-list";  // This refers to loan-list.html (Thymeleaf template)
+    }
     // Show loan application form
     @GetMapping("/apply")
     public String showLoanForm(Model model) {
