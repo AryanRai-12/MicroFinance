@@ -130,6 +130,7 @@ public class WalletController {
     
     
     
+    
     @GetMapping("/transfer")
     public String showTransferForm(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         User sender = userService.findByUsername(userDetails.getUsername());
@@ -145,6 +146,7 @@ public class WalletController {
     }
 
     
+    
     @PostMapping("/transfer")
     public String transferMoney(@RequestParam String receiverUpi,
                                 @RequestParam double amount,
@@ -159,7 +161,7 @@ public class WalletController {
             model.addAttribute("error", "Invalid UPI PIN");
             WalletTransaction senderTransaction=new WalletTransaction(BigDecimal.valueOf(amount), "TRANSFER", "FAILED - invalid Upi pin", senderWallet);
         	walletTransactionService.recordTransaction(senderTransaction);
-            return "dashboard";
+            return "redirect:/dashboard";
         }
 
         // Check balance
@@ -168,7 +170,7 @@ public class WalletController {
         	WalletTransaction senderTransaction=new WalletTransaction(BigDecimal.valueOf(amount), "TRANSFER", "FAILED - insufficient balance", senderWallet);
         	walletTransactionService.recordTransaction(senderTransaction);
             model.addAttribute("error", "Insufficient balance");
-            return "dashboard";
+            return "redirect:/dashboard";
         }
 
         // Find receiver by UPI
@@ -178,7 +180,7 @@ public class WalletController {
         	WalletTransaction senderTransaction=new WalletTransaction(BigDecimal.valueOf(amount), "TRANSFER", "FAILED - invalid upi id", senderWallet);
         	walletTransactionService.recordTransaction(senderTransaction);
             model.addAttribute("error", "Receiver not found");
-            return "dashboard";
+            return "redirect:/dashboard";
         }
 
         Wallet receiverWallet = walletService.getWalletByUserId(receiver.getId());
@@ -194,7 +196,7 @@ public class WalletController {
         walletTransactionService.recordTransaction(senderTransaction);
         walletTransactionService.recordTransaction(reciverTransaction);
         model.addAttribute("message", "Transfer successful");
-        return "dashboard";
+        return "redirect:/dashboard";
     }
 
 }
