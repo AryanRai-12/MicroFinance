@@ -27,6 +27,10 @@
                 </li>
             </ul>
             <p th:if="${#lists.isEmpty(loans)}" class="empty">No loans found.</p>
+			<form th:action="@{/loans/apply}" method="get">
+			     <button type="submit">Apply Loan</button>
+			</form>
+			
         </div>
 
         <div class="card">

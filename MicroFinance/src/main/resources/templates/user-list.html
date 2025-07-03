@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Loans</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/wallet.css}">
+</head>
+<body>
+<div class="wallet-container">
+    <h2>📋 All Loans</h2>
+
+    <table class="transaction-table">
+        <thead>
+            <tr>
+                <th>Loan ID</th>
+                <th>Username</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="loan : ${loanList}">
+                <td th:text="${loan.id}">1</td>
+                <td th:text="${loan.user.username}">Username</td>
+                <td th:text="${loan.amount}">₹1000</td>
+                <td th:text="${loan.status}">PENDING</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/dashboard}" class="btn gray">← Back to Dashboard</a>
+    </div>
+</div>
+</body>
+</html>

@@ -62,6 +62,7 @@ body {
 }
 
 .btn.blue   { background-color: #007bff; }
+.btn.cyan   { background-color: #33808f; }
 .btn.orange { background-color: #fd7e14; }
 .btn.teal   { background-color: #17a2b8; }
 .btn.dark   { background-color: #343a40; }
