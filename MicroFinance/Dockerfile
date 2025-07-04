@@ -1,5 +1,5 @@
 # ---------- Stage 1: build the JAR with Maven ----------  
-FROM eclipse-temurin:24-jdk AS build
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
 # Copy source code & Maven wrapper
@@ -9,11 +9,11 @@ COPY . .
 RUN ./mvnw -q clean package -DskipTests
 
 # ---------- Stage 2: slim runtime image ----------  
-FROM eclipse-temurin:24-jdk
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Copy only the built jar from the first stage
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/MicroFinance-*.jar app.jar
 
 # Expose Spring Boot default port
 EXPOSE 8080

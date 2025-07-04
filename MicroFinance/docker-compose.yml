@@ -5,23 +5,29 @@ services:
     image: mysql:8
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: LittleThings2*
+      MYSQL_ROOT_PASSWORD: "LittleThings2*"
       MYSQL_DATABASE: microfinance
     ports:
-      - "3307:3306"
+      - "3307:3306"  # or "3306:3306" if you want standard access
     networks:
       - springboot-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pLittleThings2*"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   app:
     build: .
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/microfinance
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: LittleThings2*
+      SPRING_DATASOURCE_PASSWORD: "LittleThings2*"
     networks:
       - springboot-net
 
