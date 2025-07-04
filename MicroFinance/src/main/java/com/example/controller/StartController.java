@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class StartController {
 	@GetMapping("/")
     public String Home() {
-        return "redirect:/auth/login";
+		 return "✅ MicroFinance is running";
     }
 }
