@@ -22,7 +22,10 @@ public class AuthController {
 	    @Autowired
 	    private UserService userService;
 	    
-	    
+	    @GetMapping("/")
+	    public String redirectToLogin() {
+	        return "redirect:/auth/login";
+	    }
 	    
 	    
 	    
