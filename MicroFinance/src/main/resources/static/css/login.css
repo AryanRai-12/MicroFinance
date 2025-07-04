@@ -1,0 +1,99 @@
+/* ───────── COMMON DESIGN TOKENS ───────── */
+:root {
+    --accent: #2d9cdb;              /* slice‑style blue */
+    --text-light: #212529;
+    --text-dark:  #e8e8e8;
+    --glass-light: rgba(255,255,255,0.55);
+    --glass-dark:  rgba(45,50,59,0.55);
+    --blur: 20px;
+    font-family: "Poppins", sans-serif;
+}
+
+/* ───────── GLOBAL LAYOUT ───────── */
+body {
+    display: flex;
+    flex-direction: column;         /* so navbar stays top, card centers */
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 88px;              /* navbar height */
+    background: linear-gradient(120deg,#e0f2fe,#bae6fd);
+    color: var(--text-light);
+    transition: background .3s ease, color .3s ease;
+}
+
+/* ───────── DARK MODE OVERRIDES ───────── */
+body.dark-mode {
+    background: linear-gradient(120deg,#2a2f38,#1e2329);
+    color: var(--text-dark);
+}
+
+/* ───────── NAVBAR ───────── */
+.main-navbar {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1050;
+    backdrop-filter: blur(var(--blur));
+    background: var(--glass-light);
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+body.dark-mode .main-navbar {
+    background: var(--glass-dark);
+    border-bottom-color: rgba(0,0,0,0.25);
+}
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: inherit !important;
+}
+
+/* ───────── GLASS CARD ───────── */
+.glass-card {
+    background: var(--glass-light);
+    backdrop-filter: blur(var(--blur));
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    color: inherit;
+    transition: background .3s ease, box-shadow .3s ease;
+}
+body.dark-mode .glass-card {
+    background: var(--glass-dark);
+    border-color: rgba(0,0,0,0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* ───────── FORM ELEMENTS ───────── */
+.form-label,
+.form-control,
+.alert,
+a { color: inherit !important; }
+
+.form-control {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.15);
+}
+body.dark-mode .form-control {
+    border-color: rgba(255,255,255,0.25);
+}
+.form-control::placeholder { opacity: .6; }
+
+/* ───────── BUTTONS ───────── */
+.btn-accent {
+    background: var(--accent);
+    border: none;
+    font-weight: 500;
+}
+.btn-accent:hover {
+    background: shade(var(--accent),-10%); /* if SCSS; otherwise: tweak color */
+}
+
+/* ───────── DARK‑MODE SWITCH STYLING ───────── */
+.form-check-input {
+    cursor: pointer;
+}
+body.dark-mode .form-check-input {
+    background-color: #3a3f48;
+    border-color: #5a5f68;
+}

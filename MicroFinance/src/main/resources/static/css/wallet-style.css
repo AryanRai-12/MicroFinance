@@ -1,0 +1,81 @@
+/* Soft gradient background */
+.wallet-body {
+  background: linear-gradient(135deg, #e0f7fa, #80deea);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* White card with subtle shadow */
+.wallet-card {
+  animation: fadeInScale 0.4s ease forwards;
+}
+
+/* Balance text styling */
+.balance-text {
+  color: #00796b; /* teal-ish */
+}
+
+/* Button hover effect */
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffb300;
+  color: #212529;
+  border-color: #ffb300;
+  box-shadow: 0 4px 12px rgba(255, 179, 0, 0.4);
+}
+
+.btn-outline-info:hover {
+  background-color: #17a2b8;
+  color: white;
+  border-color: #17a2b8;
+  box-shadow: 0 4px 12px rgba(23, 162, 184, 0.4);
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: white;
+  border-color: #6c757d;
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+}
+
+.btn-outline-dark:hover {
+  background-color: #343a40;
+  color: white;
+  border-color: #343a40;
+  box-shadow: 0 4px 12px rgba(52, 58, 64, 0.4);
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+  border-color: #dc3545;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+/* Smooth fade-in scale */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .wallet-card {
+    padding: 2rem !important;
+  }
+  
+  .btn-lg {
+    font-size: 1.1rem;
+  }
+}

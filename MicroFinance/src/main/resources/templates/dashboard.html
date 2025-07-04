@@ -1,49 +1,83 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dashboard</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+  <meta charset="UTF-8">
+  <title>Dashboard | MicroFinance</title>
+  <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome, <span th:text="${user.username}">User</span></h1>
 
-        <div class="card">
-            <h2>Profile</h2>
-            <p><strong>Email:</strong> <span th:text="${user.email}">user@example.com</span></p>
-            <p><strong>Wallet Balance:</strong> ₹<span th:text="${wallet.balance}">0.00</span></p>
-            <form th:action="@{/wallet/view}" method="get">
-                <button type="submit">Go to Wallet</button>
-            </form>
-        </div>
+<!-- Top navbar -->
+<header class="navbar">
+  <div class="nav-brand">MicroFinance</div>
+  <form th:action="@{/logout}" method="get">
+    <button type="submit" class="logout-btn">Logout</button>
+  </form>
+</header>
 
-        <div class="card">
-            <h2>Your Loans</h2>
-            <ul th:if="${loans != null}">
-                <li th:each="loan : ${loans}">
-                    ₹<span th:text="${loan.amount}"></span> - 
-                    <span class="status" th:text="${loan.status}"></span>
-                </li>
-            </ul>
-            <p th:if="${#lists.isEmpty(loans)}" class="empty">No loans found.</p>
-			<form th:action="@{/loans/apply}" method="get">
-			     <button type="submit">Apply Loan</button>
-			</form>
-			
-        </div>
+<div class="main-container">
 
-        <div class="card">
-            <h2>Recent Transactions</h2>
-            <ul th:if="${transactions != null}">
-                <li th:each="txn : ${transactions}">
-                    <strong th:text="${txn.type}">ADD</strong>: ₹<span th:text="${txn.amount}">0.00</span> 
-                    (<span th:text="${txn.status}" 
-                           th:classappend="${txn.status == 'SUCCESS'} ? 'success' : 'failed'">Status</span>)
-                </li>
-            </ul>
-            <p th:if="${#lists.isEmpty(transactions)}" class="empty">No transactions available.</p>
-        </div>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <button onclick="showSection('profile')" class="nav-btn active">👤 Profile</button>
+    <button onclick="showSection('loans')" class="nav-btn">💸 Loans</button>
+    <button onclick="showSection('transactions')" class="nav-btn">📄 Transactions</button>
+  </aside>
+
+  <!-- Main Content Area -->
+  <section class="content">
+
+    <!-- Profile Section -->
+    <div id="profile" class="section visible">
+      <h2>👤 Profile</h2>
+      <p><strong>Welcome:</strong> <span th:text="${user.username}">User</span></p>
+      <p><strong>Email:</strong> <span th:text="${user.email}">user@example.com</span></p>
+      <p><strong>Wallet Balance:</strong> ₹<span th:text="${wallet.balance}">0.00</span></p>
+      <form th:action="@{/wallet/view}" method="get">
+        <button class="primary-btn">Go to Wallet</button>
+      </form>
     </div>
+
+    <!-- Loans Section -->
+    <div id="loans" class="section">
+      <h2>💸 Your Loans</h2>
+      <ul th:if="${loans != null}">
+        <li th:each="loan : ${loans}">
+          ₹<span th:text="${loan.amount}">0.00</span> -
+          <span th:text="${loan.status}">PENDING</span>
+        </li>
+      </ul>
+      <p th:if="${#lists.isEmpty(loans)}" class="empty">No loans found.</p>
+      <form th:action="@{/loans/apply}" method="get">
+        <button class="secondary-btn">Apply for Loan</button>
+      </form>
+    </div>
+
+    <!-- Transactions Section -->
+    <div id="transactions" class="section">
+      <h2>📄 Recent Transactions</h2>
+      <ul th:if="${transactions != null}">
+        <li th:each="txn : ${transactions}">
+          <strong th:text="${txn.type}">ADD</strong>: ₹<span th:text="${txn.amount}">0.00</span>
+          (<span th:text="${txn.status}" th:classappend="${txn.status == 'SUCCESS'} ? 'success' : 'failed'">Status</span>)
+        </li>
+      </ul>
+      <p th:if="${#lists.isEmpty(transactions)}" class="empty">No transactions available.</p>
+    </div>
+
+  </section>
+</div>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('visible'));
+    document.getElementById(id).classList.add('visible');
+
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script>
+
 </body>
 </html>
