@@ -74,7 +74,7 @@ public class LoanController {
         loan.setDueDate(dueDate);                // ← set the computed date
 
         loanService.applyForLoan(loan);          // persist
-        return "redirect:/loans/my";             // user’s own‑loans page
+        return "redirect:/dashboard";             // user’s own‑loans page
     }
 
     
